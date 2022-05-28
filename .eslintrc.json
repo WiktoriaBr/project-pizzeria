@@ -16,10 +16,7 @@
         "linebreak-style": [
             "off"
         ],
-        "quotes": [
-            "error",
-            {"allowTemplateLiterals": true}
-        ],
+        
         "semi": [
             "error",
             "always"
