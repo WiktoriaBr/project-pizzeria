@@ -86,8 +86,9 @@
         if((productActive) && (productActive =! thisProduct.element))
         {
           console.log("prod act w if "+productActive);
-          productActive.element.toggle(select.menuProduct.clickable);
+          productActive.element.remove(select.menuProduct.clickable);
         }
+        thisProduct.element.toggle(select.menuProduct.clickable);
 
       });
     }
