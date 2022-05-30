@@ -82,13 +82,13 @@
       clicableTrigger.addEventListener('click', function(event){
         event.preventDefault();
         let productActive = document.querySelector(classNames.menuProduct.wrapperActive);
-        console.log("product active pls "+productActive);
+        console.log("product active "+productActive);
         if((productActive) && (productActive =! thisProduct.element))
         {
           console.log("prod act w if "+productActive);
-          productActive.element.remove(select.menuProduct.clickable);
+          productActive.element.remove(classNames.menuProduct.wrapperActive);
         }
-        thisProduct.element.toggle(select.menuProduct.clickable);
+        thisProduct.element.toggle(classNames.menuProduct.wrapperActive);
 
       });
     }
