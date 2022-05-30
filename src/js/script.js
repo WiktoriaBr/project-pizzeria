@@ -57,7 +57,7 @@
   class Product {
     constructor(id, data) {
       const thisProduct = this;
-      console.log(thisProduct);
+      //console.log(thisProduct);
 
       thisProduct.id = id;
       thisProduct.data = data;
@@ -77,7 +77,19 @@
     }
     initAccordion(){
       const thisProduct = this;
-      console.log(thisProduct);
+      const clicableTrigger = document.querySelector(select.menuProduct.clickable);
+
+      clicableTrigger.addEventListener('click', function(event){
+        event.preventDefault();
+        let productActive = document.querySelector(classNames.menuProduct.wrapperActive);
+        console.log("product active pls "+productActive);
+        if((productActive) && (productActive =! thisProduct.element))
+        {
+          console.log("prod act w if "+productActive);
+          productActive.element.toggle(select.menuProduct.clickable);
+        }
+
+      });
     }
   }
 
