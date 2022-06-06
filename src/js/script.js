@@ -63,7 +63,10 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
     }
     renderInMenu(){
       const thisProduct = this;
@@ -75,22 +78,53 @@
 
       menuContainer.appendChild(thisProduct.element);
     }
+    getElements(){
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
     initAccordion(){
       const thisProduct = this;
-      const clicableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
 
-      clicableTrigger.addEventListener('click', function(event){
+      thisProduct.accordionTrigger.addEventListener('click', function(event){
         event.preventDefault();
-        let productActive = document.querySelector(classNames.menuProduct.wrapperActive);
+        let productActive = document.querySelector(".active");
         console.log("product active "+productActive);
-        if((productActive) && (productActive =! thisProduct.element))
+        if((productActive) && (productActive != thisProduct))
         {
           console.log("prod act w if "+productActive);
-          productActive.element.classList.remove(classNames.menuProduct.wrapperActive);
+          productActive.classList.remove(classNames.menuProduct.wrapperActive);
         }
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-
       });
+    }
+    initOrderForm(){
+      const thisProduct=this;
+      console.log("initOrderForm "+ thisProduct);
+
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+      
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+      
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+    processOrder(){
+      const thisProduct=this;
+      console.log("processOrder "+thisProduct);
     }
   }
 
