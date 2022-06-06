@@ -77,7 +77,7 @@
     }
     initAccordion(){
       const thisProduct = this;
-      const clicableTrigger = document.querySelector(select.menuProduct.clickable);
+      const clicableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
 
       clicableTrigger.addEventListener('click', function(event){
         event.preventDefault();
@@ -86,9 +86,9 @@
         if((productActive) && (productActive =! thisProduct.element))
         {
           console.log("prod act w if "+productActive);
-          productActive.element.remove(classNames.menuProduct.wrapperActive);
+          productActive.element.classList.remove(classNames.menuProduct.wrapperActive);
         }
-        thisProduct.element.toggle(classNames.menuProduct.wrapperActive);
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
 
       });
     }
