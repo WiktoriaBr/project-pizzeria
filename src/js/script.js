@@ -107,7 +107,7 @@
         );
         console.log("product active " + productActive);
         if (productActive && productActive != thisProduct.element) {
-          console.log("prod act w if " + productActive);
+          //console.log("prod act w if " + productActive);
           productActive.classList.remove(
             classNames.menuProduct.wrapperActive
           );
@@ -119,7 +119,7 @@
     }
     initOrderForm() {
       const thisProduct = this;
-      console.log("initOrderForm " + thisProduct);
+      //console.log("initOrderForm " + thisProduct);
 
       thisProduct.form.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -139,11 +139,11 @@
     }
     processOrder() {
       const thisProduct = this;
-      console.log("processOrder " + thisProduct);
+      //console.log("processOrder " + thisProduct);
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log("formData ", formData);
+      //console.log("formData ", formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -153,12 +153,26 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         console.log(paramId, param);
-
+        
         // for every option in this category
         for (let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
+          if(formData[paramId] && formData[paramId].includes(optionId)) {
+            // check if the option is not default
+            console.log("formData[paramId].includes(optionId) --->>"+formData[paramId]+" "+ formData[paramId].includes(optionId));
+            /*if() {
+              // add option price to price variable
+              price=price+formData.paramId.optionId.price;
+            }
+          } else {
+            // check if the option is default
+            if(????) {
+              // reduce price variable
+            }*/
+          }
+          
         }
       }
       // update calculated price in the HTML
